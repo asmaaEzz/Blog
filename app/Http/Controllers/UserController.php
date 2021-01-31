@@ -25,4 +25,14 @@ class UserController extends Controller
         $user->update($inputs);
         return back();
     }
+    public function index(){
+        $users=User::all();
+        return view('admin.users.index',['users'=>$users]);
+    }
+    public function destroy(User $user){
+        $user->delete();
+        Session::flash('user_Deleted','user was Deleted');
+
+        return back();
+    }
 }

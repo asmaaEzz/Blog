@@ -35,4 +35,10 @@ Route::middleware('auth')->group(function (){
     Route::put('users/{user}/update',[App\Http\Controllers\UserController::class, 'update'])->name('user.profile.update');
 
 });
+    Route::middleware('role:Admin')->group(function () {
+        Route::get('admin/users',[App\Http\Controllers\UserController::class, 'index'])->name('user.index');
+        Route::delete('admin/users/{user}/delete', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');
+
+    });
+
 
